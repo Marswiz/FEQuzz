@@ -1,0 +1,28 @@
+{
+    "lists": [
+        {
+            "id": 1,
+            "type": "coding",
+            "keywords": ["手写API"], 
+            "heat": 0,
+            "question": "手写实现call()方法",
+            "answer": "<pre>function myCall() {...}</pre>"
+        },
+        {
+            "id": 2,
+            "type": "basic",
+            "keywords": ["CSS"], 
+            "heat": 0,
+            "question": "说说CSS中的BFC",
+            "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
+        },
+        {
+            "id": 3,
+            "type": "softskill",
+            "keywords": ["软技能"], 
+            "heat": 0,
+            "question": "请问你是否薅过羊毛？如何看待？",
+            "answer": "自由作答。"
+        }
+    ]
+}

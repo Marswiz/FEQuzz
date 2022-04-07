@@ -1,16 +1,16 @@
 const express = require('express');
 const app = express();
-app.get('/', (req, res) => {
-    res.cookie('id','123');
-    res.send({
-        name: 'Marswiz',
-        age: 19,
-    });
-    console.log(req.cookies);
-});
-app.post('/', (req, res) => {
-    res.send(`post request detected.`);
-});
-app.listen(3000, () => {
-    console.log(`Server is running on http://localhost:3000/`);
+const path = require('path');
+const port = 3000;
+
+// import middlewares.
+const { error } = require(path.resolve(__dirname, './middlewares/error.js'));
+const router = require(path.resolve(__dirname, './middlewares/router.js'));
+
+// main
+app.use(router); // add router middleware.
+app.use(error); // error middleware. deal with error at the bottom.
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}/`);
 });
