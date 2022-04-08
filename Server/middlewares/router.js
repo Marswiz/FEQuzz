@@ -20,7 +20,6 @@ router.get('/questions', async (req, res, next) => {
                 page,
                 perPage
             } = req.query;
-            console.log(page, perPage);
             if (page && perPage) {
                 page = +page; // start from 0.
                 perPage = +perPage; // [0, perpage-1]
