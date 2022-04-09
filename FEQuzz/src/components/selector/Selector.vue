@@ -1,18 +1,26 @@
 <script setup lang="ts">
+    // imports.
     import SelectorDetailBox from './SelectorDetailBox.vue';
     import {
-        ref
+        Ref,
+        ref,
     } from 'vue';
-    let selecting = ref(false);
-    defineProps({
+
+    // ts type.
+    type Selected = null | string | number;
+
+    // main.
+    let selecting = ref(false); // toggle the visibility of list box.
+    let props = defineProps({
         tag: String,
         items: Array,
-        selected: {
-            validator: (val) => {
-                return val === null || typeof val === 'string' || typeof val === 'number';
-            },
-        },
+        changeCallback: Function,
     });
+    let selected: Ref < Selected > = ref(null);
+    const choose = (val: Selected) => {
+        selected.value = val;
+        if(typeof props.changeCallback === 'function') props.changeCallback(selected.value);
+    };
     const toggleSelecting = function() {
         selecting.value = !selecting.value;
     };
@@ -24,7 +32,7 @@
             {{ selected ? selected : tag }}
             <span class="arrow">▲</span>
         </span>
-        <SelectorDetailBox v-if="selecting" :items="items"></SelectorDetailBox>
+        <SelectorDetailBox v-if="selecting" :items="items" @choose-item="choose"></SelectorDetailBox>
     </div>
 </template>
 
@@ -39,9 +47,11 @@
         border-radius: 5px;
         margin-right: 1em;
         cursor: pointer;
+
         .selector_tag {
             padding: 0 0.5em;
         }
+
         span.arrow {
             display: inline-block;
             transform: rotate(180deg);

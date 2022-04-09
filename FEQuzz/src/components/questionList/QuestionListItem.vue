@@ -1,13 +1,20 @@
 <script setup lang="ts">
+    import {
+        useRouter
+    } from 'vue-router';
+    const router = useRouter();
     defineProps({
         id: Number,
         question: String,
         heat: Number,
     });
+    const go = (id: number | undefined) => {
+        router.push(`/${id}`);
+    };
 </script>
 
 <template>
-    <div class="questionListItem_container">
+    <div class="questionListItem_container" @click="go(id)">
         <div class="questionListItem_id">{{id}}</div>
         <div class="questionListItem_question">{{question}}</div>
         <div class="questionListItem_heat">{{heat}}</div>

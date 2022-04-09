@@ -18,10 +18,10 @@
 <template>
     <div class="questionWindowHeader_container">
         <div class="questionWindowHeader_selectorContainer">
-            <Selector v-for="{tag, items, selected} in selectors" :tag="tag" :items="items" :selected="selected"></Selector>
+            <Selector v-for="{tag, items} in selectors" :tag="tag" :items="items" :change-callback="()=>{}"></Selector>
         </div>
         <div class="questionWindowHeader_searchContainer">
-            <input type="text" id="questionWindowHeader_searchBox">
+            <input type="text" placeholder="Press Enter to search." id="questionWindowHeader_searchBox">
         </div>
         <div class="questionWindowHeader_userContainer">
             user info.
@@ -64,6 +64,7 @@
         padding: 5px 10px;
         outline: none;
         border-radius: 30px;
+
         &::placeholder {
             content: 'search.';
         }

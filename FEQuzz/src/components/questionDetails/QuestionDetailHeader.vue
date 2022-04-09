@@ -49,14 +49,7 @@
     .questionDetailHeader_selectorContainer {
         display: flex;
         align-items: center;
-        flex: 0 0 40%;
-    }
-
-    .questionDetailHeader_searchContainer {
-        display: flex;
-        justify-content: stretch;
-        align-items: center;
-        flex: 0 0 10em;
+        flex: 1 0 auto;
     }
 
     .questionDetailHeader_userContainer {

@@ -1,6 +1,4 @@
-<script setup lang="ts">
-  import questionWindow from './components/QuestionWindow.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div id="appHeader">
@@ -9,7 +7,7 @@
     </a>
   </div>
   <div id="appContent">
-      <component id="questionWindow" :is="questionWindow"></component>
+      <router-view></router-view>
   </div>
   <div id="appFooter">
     <a href="https://marswiz.com" target="_blank">Marswiz</a> @2022

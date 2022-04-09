@@ -1,10 +1,10 @@
 <script setup lang="ts">
-    import QuestionListItem from './questionWindow/QuestionListItem.vue';
-    import QuestionListHeader from './questionWindow/QuestionListHeader.vue';
-    import QuestionWindowHeader from './questionWindow/QuestionWindowHeader.vue';
-    import QuestionDetail from './questionDetails/QuestionDetail.vue';
-    import QuestionDetailHeader from './questionDetails/QuestionDetailHeader.vue';
-    import {ref} from 'vue';
+    import QuestionListItem from './QuestionListItem.vue';
+    import QuestionListHeader from './QuestionListHeader.vue';
+    import QuestionWindowHeader from './QuestionWindowHeader.vue';
+    import {
+        ref
+    } from 'vue';
 
     // test codes.
     let lists = [{
@@ -57,22 +57,19 @@
         heat: 20,
     }];
     let is = ref(true);
-    const toggle = ()=>{
+    const toggle = () => {
         is.value = !is.value;
     };
 </script>
 
 <template>
     <div class="questionWindow_container" id="questionWindowContainer">
-        <div class="questionWindow_header" id="questionWindowHeader" @click="toggle">
-            <component :is="!is ? QuestionWindowHeader : QuestionDetailHeader"></component>
+        <div class="questionWindow_header" id="questionWindowHeader">
+            <QuestionWindowHeader></QuestionWindowHeader>
         </div>
         <div class="questionWindow_content" id="questionWindowContent">
-            <template v-if="!is">
-                <QuestionListHeader></QuestionListHeader>
-                <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
-            </template>
-            <QuestionDetail v-if="is"></QuestionDetail>
+            <QuestionListHeader></QuestionListHeader>
+            <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
         </div>
     </div>
     <div id="questionWindow_btnList">

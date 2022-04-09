@@ -1,16 +1,14 @@
 <script setup lang="ts">
+    defineEmits(['chooseItem']);
     defineProps({
         items: Array,
         selected: String,
     });
-    const select = (e) => {
-        console.log(e.target.innerText);
-    };
 </script>
 
 <template>
     <div class="selectorDetail_container">
-        <p v-for="item in items" @click="select">{{ item }}</p>
+        <p v-for="item in items" @click="$emit('chooseItem', item)">{{ item }}</p>
     </div>
 </template>
 
