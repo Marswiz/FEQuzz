@@ -1,7 +1,12 @@
 <script setup lang="ts">
-    import QuestionListItem from './QuestionListItem.vue';
-    import QuestionListHeader from './QuestionListHeader.vue';
-    import QuestionWindowHeader from './QuestionWindowHeader.vue';
+    import QuestionListItem from './questionWindow/QuestionListItem.vue';
+    import QuestionListHeader from './questionWindow/QuestionListHeader.vue';
+    import QuestionWindowHeader from './questionWindow/QuestionWindowHeader.vue';
+    import QuestionDetail from './questionDetails/QuestionDetail.vue';
+    import QuestionDetailHeader from './questionDetails/QuestionDetailHeader.vue';
+    import {ref} from 'vue';
+
+    // test codes.
     let lists = [{
         id: 1,
         question: '手写bind()方法',
@@ -14,7 +19,7 @@
         id: 3,
         question: '说说CSS中的BEM规范',
         heat: 20,
-    },{
+    }, {
         id: 1,
         question: '手写bind()方法',
         heat: 0,
@@ -26,7 +31,7 @@
         id: 3,
         question: '说说CSS中的BEM规范',
         heat: 20,
-    },{
+    }, {
         id: 1,
         question: '手写bind()方法',
         heat: 0,
@@ -38,7 +43,7 @@
         id: 3,
         question: '说说CSS中的BEM规范',
         heat: 20,
-    },{
+    }, {
         id: 1,
         question: '手写bind()方法',
         heat: 0,
@@ -51,16 +56,23 @@
         question: '说说CSS中的BEM规范',
         heat: 20,
     }];
+    let is = ref(true);
+    const toggle = ()=>{
+        is.value = !is.value;
+    };
 </script>
 
 <template>
     <div class="questionWindow_container" id="questionWindowContainer">
-        <div class="questionWindow_header" id="questionWindowHeader">
-            <QuestionWindowHeader></QuestionWindowHeader>
+        <div class="questionWindow_header" id="questionWindowHeader" @click="toggle">
+            <component :is="!is ? QuestionWindowHeader : QuestionDetailHeader"></component>
         </div>
         <div class="questionWindow_content" id="questionWindowContent">
-            <QuestionListHeader></QuestionListHeader>
-            <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
+            <template v-if="!is">
+                <QuestionListHeader></QuestionListHeader>
+                <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
+            </template>
+            <QuestionDetail v-if="is"></QuestionDetail>
         </div>
     </div>
     <div id="questionWindow_btnList">
@@ -101,10 +113,11 @@
     }
 
     #questionWindow_btnList {
-      align-self: flex-end;
-      margin-right: 10vw;
-      margin-top: 2vh;
-      margin-bottom: 2vh;
+        align-self: flex-end;
+        margin-right: 10vw;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+
         button {
             width: 50px;
             height: 50px;
@@ -117,8 +130,9 @@
             opacity: 0.8;
             background-color: #63C3D0;
             cursor: pointer;
+
             &:active {
-              background-color: #888;
+                background-color: #888;
             }
         }
     }

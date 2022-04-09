@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
     defineProps({
         id: Number,
         question: String,
@@ -33,6 +33,7 @@
             border-top: 3px dashed black;
             border-bottom: 3px dashed black;
         }
+
         &:active {
             color: #ff8c00;
         }

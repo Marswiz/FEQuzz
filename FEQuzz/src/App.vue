@@ -1,10 +1,12 @@
 <script setup lang="ts">
-  import questionWindow from './components/questionWindow/QuestionWindow.vue'
+  import questionWindow from './components/QuestionWindow.vue'
 </script>
 
 <template>
   <div id="appHeader">
-    <img alt="Vue logo" src="./assets/logo.svg" />
+    <a href="/">
+      <img alt="Vue logo" src="./assets/logo.svg" />
+    </a>
   </div>
   <div id="appContent">
       <component id="questionWindow" :is="questionWindow"></component>
