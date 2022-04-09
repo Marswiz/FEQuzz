@@ -1,8 +1,6 @@
 import {
     Component
 } from 'vue';
-import QuestionDetail from '../components/questionDetails/QuestionDetail.vue';
-import QuestionList from '../components/questionList/QuestionList.vue';
 
 // ts type defiine.
 type Route = {
@@ -13,10 +11,10 @@ type Route = {
 // define routes.
 const routes: Route[] = [{
     path: '/:id',
-    component: QuestionDetail,
+    component: import('../components/questionDetails/QuestionDetail.vue'),
 },{
     path: '/',
-    component: QuestionList,
+    component: import('../components/questionList/QuestionList.vue'),
 }];
 
 export {
