@@ -43,6 +43,7 @@
             flex: 0 0 50%;
             padding: 10px;
             border: 1px solid black;
+            caret-color: #63c3d0;
         }
     }
 </style>

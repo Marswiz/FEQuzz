@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import UserInfo from '../userInfo/UserInfo.vue';
     let questionInfo = {
         id: 124,
         type: '手写代码',
@@ -34,7 +35,7 @@
             </div>
         </div>
         <div class="questionDetailHeader_userContainer">
-            user info.
+            <UserInfo></UserInfo>
         </div>
     </div>
 </template>
@@ -85,6 +86,7 @@
 
         .selector_tag {
             padding: 0 0.5em;
+
             .info {
                 color: #63C3D0;
             }

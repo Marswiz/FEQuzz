@@ -1,4 +1,8 @@
 <script setup lang="ts">
+    import UserInfo from '../userInfo/UserInfo.vue';
+    import {
+        ref
+    } from 'vue';
     import Selector from '../selector/Selector.vue';
     let selectors = [{
         tag: '类别',
@@ -13,6 +17,9 @@
         items: ['算法', '网络', 'JS', 'CSS', 'HTML'],
         selected: null,
     }];
+    // searchBox.
+    let searchText = ref('Search text Here and press <Enter>.');
+    defineEmits(['search']);
 </script>
 
 <template>
@@ -21,10 +28,10 @@
             <Selector v-for="{tag, items} in selectors" :tag="tag" :items="items" :change-callback="()=>{}"></Selector>
         </div>
         <div class="questionWindowHeader_searchContainer">
-            <input type="text" placeholder="Press Enter to search." id="questionWindowHeader_searchBox">
+            <input type="text" v-model="searchText" id="questionWindowHeader_searchBox" @keydown.enter="$emit('search', searchText)">
         </div>
         <div class="questionWindowHeader_userContainer">
-            user info.
+            <UserInfo></UserInfo>
         </div>
     </div>
 </template>

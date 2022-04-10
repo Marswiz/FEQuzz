@@ -40,6 +40,7 @@
     .selector_container {
         position: relative;
         color: white;
+        z-index: 2;
         background-color: black;
         height: 1.8em;
         line-height: 1.8em;

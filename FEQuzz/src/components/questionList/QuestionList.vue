@@ -3,72 +3,38 @@
     import QuestionListHeader from './QuestionListHeader.vue';
     import QuestionWindowHeader from './QuestionWindowHeader.vue';
     import {
-        ref
+        reactive,
+        onMounted,
     } from 'vue';
+    import {
+        getQuestions
+    } from '../../api/request.ts';
 
-    // test codes.
-    let lists = [{
-        id: 1,
-        question: '手写bind()方法',
-        heat: 0,
-    }, {
-        id: 2,
-        question: '什么是防抖和节流？',
-        heat: 10,
-    }, {
-        id: 3,
-        question: '说说CSS中的BEM规范',
-        heat: 20,
-    }, {
-        id: 1,
-        question: '手写bind()方法',
-        heat: 0,
-    }, {
-        id: 2,
-        question: '什么是防抖和节流？',
-        heat: 10,
-    }, {
-        id: 3,
-        question: '说说CSS中的BEM规范',
-        heat: 20,
-    }, {
-        id: 1,
-        question: '手写bind()方法',
-        heat: 0,
-    }, {
-        id: 2,
-        question: '什么是防抖和节流？',
-        heat: 10,
-    }, {
-        id: 3,
-        question: '说说CSS中的BEM规范',
-        heat: 20,
-    }, {
-        id: 1,
-        question: '手写bind()方法',
-        heat: 0,
-    }, {
-        id: 2,
-        question: '什么是防抖和节流？',
-        heat: 10,
-    }, {
-        id: 3,
-        question: '说说CSS中的BEM规范',
-        heat: 20,
-    }];
-    let is = ref(true);
-    const toggle = () => {
-        is.value = !is.value;
-    };
+    // Get question lists. 
+    let lists = reactive([]);
+    // Get Initial lists.
+    onMounted(async () => {
+        let res = await getQuestions({});
+        res.data.forEach(i => lists.push(i));
+    });
+    // search Function.
+    async function search(searchKey: string) {
+        let res = await getQuestions({
+            searchKey: searchKey,
+        });
+        lists.length = 0;
+        res.data.forEach(i => lists.push(i));
+    }
 </script>
 
 <template>
     <div class="questionWindow_container" id="questionWindowContainer">
         <div class="questionWindow_header" id="questionWindowHeader">
-            <QuestionWindowHeader></QuestionWindowHeader>
+            <QuestionWindowHeader @search="search"></QuestionWindowHeader>
         </div>
         <div class="questionWindow_content" id="questionWindowContent">
             <QuestionListHeader></QuestionListHeader>
+            <p id="nothingMatch" v-if="lists.length === 0">没有哦~</p>
             <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
         </div>
     </div>
@@ -132,5 +98,8 @@
                 background-color: #888;
             }
         }
+    }
+    #nothingMatch {
+        text-align: center;
     }
 </style>

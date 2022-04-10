@@ -50,6 +50,10 @@
         background-color: #eee;
     }
 
+    .questionListItem_container:nth-child(odd) {
+        background-color: #fff;
+    }
+
     .questionListItem_id {
         flex: 0 0 10%;
     }
