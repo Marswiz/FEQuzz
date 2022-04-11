@@ -13,7 +13,7 @@
     let selecting = ref(false); // toggle the visibility of list box.
     let props = defineProps({
         tag: String,
-        items: Array,
+        items: [Array, Object],
         changeCallback: Function,
     });
     let selected: Ref < Selected > = ref(null);

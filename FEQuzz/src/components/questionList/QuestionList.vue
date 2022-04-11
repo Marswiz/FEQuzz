@@ -14,8 +14,8 @@
     let lists = reactive([]);
     // Get Initial lists.
     onMounted(async () => {
-        let res = await getQuestions({});
-        res.data.forEach(i => lists.push(i));
+        let res = await getQuestions();
+        res.data.lists.forEach(i => lists.push(i));
     });
     // search Function.
     async function search(searchKey: string) {

@@ -9,6 +9,7 @@
 <template>
     <div class="selectorDetail_container">
         <p v-for="item in items" @click="$emit('chooseItem', item)">{{ item }}</p>
+        <p v-if="items.length === 0"> 无 </p>
     </div>
 </template>
 

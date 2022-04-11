@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { useStore } from '../store/store';
+const store = useStore();
 
 const request = axios.create({
     baseURL: 'http://localhost:3333/questions',
@@ -12,7 +14,10 @@ type Params = {
     searchKey ? : string,
 };
 
-export function getQuestions(params: Params = {}) {
+export function getQuestions(params: Params = {
+    page: store.curPage, // get page info from store.
+    perPage: store.perPage, // get perpage info from store.
+}) {
     return request({
         method: 'GET',
         url: '/',
@@ -28,7 +33,7 @@ export function getQuestionsById(id: number) {
 }
 
 export function delQuestionById(id: number) {
-    request({
+    return request({
         method: 'DELETE',
         url: `/${id}`,
     });
@@ -42,9 +47,16 @@ type Question = {
 };
 
 export function addQuestion(payload: Question) {
-    request({
+    return request({
         method: 'POST',
         url: `/`,
         data: payload,
+    });
+}
+
+export function getInfo() {
+    return request({
+        method: 'GET',
+        url: `../questionInfo`,
     });
 }

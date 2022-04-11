@@ -1,31 +1,40 @@
 <script setup lang="ts">
+    import {
+        useStore
+    } from '../../store/store';
     import UserInfo from '../userInfo/UserInfo.vue';
     import {
+        onMounted,
+        reactive,
         ref
     } from 'vue';
     import Selector from '../selector/Selector.vue';
-    let selectors = [{
-        tag: '类别',
-        items: ['网络', 'Coding', 'Vue', '工程化'],
-        selected: null,
-    }, {
-        tag: '题型',
-        items: ['手写代码', '基础', '思维', '软技能'],
-        selected: null,
-    }, {
-        tag: '关键词',
-        items: ['算法', '网络', 'JS', 'CSS', 'HTML'],
-        selected: null,
-    }];
+    import {
+        getInfo
+    } from '../../api/request';
+
     // searchBox.
     let searchText = ref('Search text Here and press <Enter>.');
     defineEmits(['search']);
+
+    // get question info.
+    let info = reactive({});
+    onMounted(async () => {
+        let infoGet = await getInfo();
+        for (let k of Reflect.ownKeys(infoGet.data)) {
+            info[k] = infoGet.data[k];
+        }
+    });
+
+    // pinia
+    let store = useStore();
 </script>
 
 <template>
     <div class="questionWindowHeader_container">
         <div class="questionWindowHeader_selectorContainer">
-            <Selector v-for="{tag, items} in selectors" :tag="tag" :items="items" :change-callback="()=>{}"></Selector>
+            <Selector :tag="'题型'" :items="Object.keys(info)" :change-callback="store.changeType"></Selector>
+            <Selector :tag="'类别'" :items="store.questionSelector.type === null ? [] : info[store.questionSelector.type]" :change-callback="store.changeCategory"></Selector>
         </div>
         <div class="questionWindowHeader_searchContainer">
             <input type="text" v-model="searchText" id="questionWindowHeader_searchBox" @keydown.enter="$emit('search', searchText)">
@@ -47,6 +56,7 @@
         display: flex;
         align-items: center;
         flex: 0 0 40%;
+        padding-left: 1em;
     }
 
     .questionWindowHeader_searchContainer {
