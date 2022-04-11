@@ -32,31 +32,12 @@
     },
     {
       "id": 4,
-      "question": "xxxx",
-      "answer": "end",
-      "type": "basic",
-      "keywords": []
-    },
-    {
-      "id": 5,
-      "question": "456",
-      "answer": "123",
-      "type": "basic",
-      "keywords": []
-    },
-    {
-      "id": 6,
-      "question": "456",
-      "answer": "123",
-      "type": "basic",
-      "keywords": []
-    },
-    {
-      "id": 7,
-      "question": "456",
-      "answer": "123",
-      "type": "basic",
-      "keywords": []
+      "question": "are you ok?",
+      "answer": "Of Course!",
+      "type": "123",
+      "keywords": [
+        "456"
+      ]
     }
   ]
 }

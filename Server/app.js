@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 3000;
+const cors = require('cors');
+const morgan = require('morgan');
+const port = 3333;
 
 // import middlewares.
 const {
@@ -10,6 +12,8 @@ const {
 const router = require(path.resolve(__dirname, './middlewares/router.js'));
 
 // main
+app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json()); // parse json request body.
 app.use(router); // add router middleware.
 app.use((req, res) => {

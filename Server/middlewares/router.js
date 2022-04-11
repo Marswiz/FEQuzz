@@ -5,9 +5,6 @@ const {
 } = require('util');
 const fs = require('fs');
 const path = require('path');
-const {
-    json
-} = require('express');
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -34,15 +31,16 @@ router.get('/', (req, res) => {
         "GET3": "/questions/:id",
         "DELETE": "/questions/:id",
         "POST": "/questions",
-        "queryString": ["keywords", "page", "perPage", "type"],
+        "queryString": ["keywords", "page", "perPage", "type", "searchKey"],
     });
 });
 
 // get all the question lists.
+// or get question by page / filter.
 router.get('/questions', async (req, res, next) => {
     try {
         let lists = await getLists();
-        // 过滤
+        // 过滤: type, keywords, searchKey
         if (req.query.type) lists = lists.filter(i => i.type === req.query.type);
         if (req.query.keywords) {
             let kws = decodeURIComponent(req.query.keywords).trim().split(splitSym).map(i => i.trim());
@@ -53,6 +51,13 @@ router.get('/questions', async (req, res, next) => {
                 }
                 return false;
             });
+        }
+        if (req.query.searchKey) {
+            let q = req.query.searchKey.split(' ');
+            q = q.map(i => i.trim());
+            for (let qq of q) {
+                lists = lists.filter(i => i.question.toLowerCase().indexOf(qq.toLowerCase()) !== -1);
+            }
         }
         // 分页
         let {
