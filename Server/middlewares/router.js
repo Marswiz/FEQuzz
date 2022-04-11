@@ -9,6 +9,7 @@ const path = require('path');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const listsPath = path.resolve(__dirname, '../questions.json');
+const infoPath = path.resolve(__dirname, '../questionInfo.json');
 const splitSym = '|';
 
 // getQuestions from questions.json
@@ -20,6 +21,11 @@ const getQuestions = async () => {
 const getLists = async () => {
     let res = await getQuestions();
     return res.lists;
+}
+// getInfo from questionInfo.json.
+const getInfo = async () => {
+    let res = await readFile(infoPath, 'utf8');
+    return JSON.parse(res);;
 }
 
 // Routers.
@@ -179,6 +185,16 @@ router.patch('/questions/:id', async (req, res, next) => {
         }
         if (found) await writeFile(listsPath, JSON.stringify(questions, null, 2));
         else throw new Error(`No such question ID found.`);
+    } catch (err) {
+        next(err);
+    }
+});
+
+// get question Info.
+router.get('/questionInfo', async (req, res, next) => {
+    try {
+        let info = await getInfo();
+        res.status(200).json(info);
     } catch (err) {
         next(err);
     }
