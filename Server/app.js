@@ -9,7 +9,7 @@ const port = 3333;
 const {
     error
 } = require(path.resolve(__dirname, './middlewares/error.js'));
-const router = require(path.resolve(__dirname, './middlewares/router.js'));
+const router = require(path.resolve(__dirname, './router'));
 
 // main
 app.use(cors());

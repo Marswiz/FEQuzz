@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const {
     promisify
 } = require('util');
@@ -25,25 +23,10 @@ const getLists = async () => {
 // getInfo from questionInfo.json.
 const getInfo = async () => {
     let res = await readFile(infoPath, 'utf8');
-    return JSON.parse(res);;
+    return JSON.parse(res);
 }
 
-// Routers.
-// Hypermedia API
-router.get('/', (req, res) => {
-    res.status(200).json({
-        "GET1": "/",
-        "GET2": "/questions",
-        "GET3": "/questions/:id",
-        "DELETE": "/questions/:id",
-        "POST": "/questions",
-        "queryString": ["keywords", "page", "perPage", "type", "searchKey"],
-    });
-});
-
-// get all the question lists.
-// or get question by page / filter.
-router.get('/questions', async (req, res, next) => {
+module.exports.getQuestion = async (req, res, next) => {
     try {
         let lists = await getLists();
         // 过滤: type, keywords, searchKey
@@ -94,10 +77,9 @@ router.get('/questions', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-});
+}
 
-// get question by id
-router.get('/questions/:id', async (req, res, next) => {
+module.exports.getQuestionById = async (req, res, next) => {
     try {
         let lists = await getLists();
         let found = false;
@@ -112,10 +94,9 @@ router.get('/questions/:id', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-});
+}
 
-// delete question by id
-router.delete('/questions/:id', async (req, res, next) => {
+module.exports.deleteQuestion = async (req, res, next) => {
     try {
         let questions = await getQuestions();
         let found = false;
@@ -132,10 +113,9 @@ router.delete('/questions/:id', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-});
+}
 
-// add new question
-router.post('/questions', async (req, res, next) => {
+module.exports.addQuestion = async (req, res, next) => {
     try {
         let {
             type,
@@ -159,10 +139,9 @@ router.post('/questions', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-});
+}
 
-// modify a question existed.
-router.patch('/questions/:id', async (req, res, next) => {
+module.exports.modifyQuestion = async (req, res, next) => {
     try {
         let {
             type,
@@ -190,16 +169,13 @@ router.patch('/questions/:id', async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-});
+}
 
-// get question Info.
-router.get('/questionInfo', async (req, res, next) => {
+module.exports.getQuestionInfo = async (req, res, next) => {
     try {
         let info = await getInfo();
         res.status(200).json(info);
     } catch (err) {
         next(err);
     }
-});
-
-module.exports = router;
+}
