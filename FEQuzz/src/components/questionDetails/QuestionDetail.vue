@@ -1,15 +1,28 @@
 <script setup lang="ts">
+    import {
+        onMounted, reactive
+    } from 'vue';
+    import {
+        useRoute
+    } from 'vue-router';
     import QuestionDetail from './QuestionDetailContent.vue';
     import QuestionDetailHeader from './QuestionDetailHeader.vue';
+    import { getQuestionsById } from '../../api/request';
+    let route = useRoute();
+    let question = reactive({});
+    onMounted(async () => {
+        let questionGot = await getQuestionsById(+route.params.id);
+        for (let k of Reflect.ownKeys(questionGot.data)) question[k] = questionGot.data[k];
+    });
 </script>
 
 <template>
     <div class="questionWindow_container" id="questionWindowContainer">
         <div class="questionWindow_header" id="questionWindowHeader">
-            <QuestionDetailHeader></QuestionDetailHeader>
+            <QuestionDetailHeader :question="question"></QuestionDetailHeader>
         </div>
         <div class="questionWindow_content" id="questionWindowContent">
-            <QuestionDetail></QuestionDetail>
+            <QuestionDetail :question="question"></QuestionDetail>
         </div>
     </div>
     <div id="questionWindow_btnList">

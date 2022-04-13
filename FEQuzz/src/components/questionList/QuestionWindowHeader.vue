@@ -6,7 +6,7 @@
     import {
         onMounted,
         reactive,
-        ref
+        ref,
     } from 'vue';
     import Selector from '../selector/Selector.vue';
     import {
@@ -33,11 +33,12 @@
 <template>
     <div class="questionWindowHeader_container">
         <div class="questionWindowHeader_selectorContainer">
-            <Selector :tag="'题型'" :items="Object.keys(info)" :change-callback="store.changeType"></Selector>
-            <Selector :tag="'类别'" :items="store.questionSelector.type === null ? [] : info[store.questionSelector.type]" :change-callback="store.changeCategory"></Selector>
+            <Selector :tag="store.type === null ? '题型' : store.type" :items="Object.keys(info)" :change-callback="store.changeType"></Selector>
+            <Selector :tag="store.category === null ? '类型' : store.category" :items="store.type === null ? [] : info[store.type]" :change-callback="store.changeCategory"></Selector>
+            <button id="reset_btn" @click="store.resetFilter">Reset</button>
         </div>
         <div class="questionWindowHeader_searchContainer">
-            <input type="text" v-model="searchText" id="questionWindowHeader_searchBox" @keydown.enter="$emit('search', searchText)">
+            <input type="text" v-model="searchText" id="questionWindowHeader_searchBox" @click="()=>{searchText = ''}" @keydown.enter="$emit('search', searchText)">
         </div>
         <div class="questionWindowHeader_userContainer">
             <UserInfo></UserInfo>
@@ -57,6 +58,18 @@
         align-items: center;
         flex: 0 0 40%;
         padding-left: 1em;
+
+        #reset_btn {
+            border: none;
+            background-color: transparent;
+            font-weight: bold;
+            font-size: 1.2em;
+            cursor: pointer;
+
+            &:hover {
+                color: #63c3d0;
+            }
+        }
     }
 
     .questionWindowHeader_searchContainer {

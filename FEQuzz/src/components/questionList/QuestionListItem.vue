@@ -5,7 +5,7 @@
     const router = useRouter();
     defineProps({
         id: Number,
-        question: String,
+        title: String,
         heat: Number,
     });
     const go = (id: number | undefined) => {
@@ -16,7 +16,7 @@
 <template>
     <div class="questionListItem_container" @click="go(id)">
         <div class="questionListItem_id">{{id}}</div>
-        <div class="questionListItem_question">{{question}}</div>
+        <div class="questionListItem_question">{{title}}</div>
         <div class="questionListItem_heat">{{heat}}</div>
     </div>
 </template>

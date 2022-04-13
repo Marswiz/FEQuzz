@@ -1,17 +1,15 @@
 <script setup lang="ts">
-    let questionInfo = {
-        id: 124,
-        type: '手写代码',
-        question: '说说CSS中的BFC？它的触发条件是？',
-        keywords: ['CSS', 'BFC', '基础'],
-        answer: 'answer',
-        heat: 10,
-    };
+    defineProps({
+        question: Object,
+    });
 </script>
 
 <template>
     <div class="questionDetail_container">
-        <div class="question">{{ questionInfo.question }}</div>
+        <div class="question">
+            <p id="questionTitle">{{ question.title }}</p>
+            <p id="questionContent">{{ question.question }}</p>
+        </div>
         <div class="middleBar"></div>
         <textarea class="typeingArea">typing... | </textarea>
     </div>
@@ -25,16 +23,22 @@
         min-height: calc(55vh - 70px);
         overflow-y: scroll;
         background-color: #eee;
-        font-size: 1.2em;
+        font-size: 1.1em;
+
         .question {
             flex: auto;
-            padding: 10px;
+            padding-left: 10px;
             border: 1px solid black;
+            #questionTitle {
+                font-weight: bold;
+            }
         }
+
         .middleBar {
             flex: 0 0 5px;
             background-color: black;
         }
+
         .typeingArea {
             color: #2c3e50;
             font-size: 20px;

@@ -3,27 +3,30 @@
     import QuestionListHeader from './QuestionListHeader.vue';
     import QuestionWindowHeader from './QuestionWindowHeader.vue';
     import {
-        reactive,
         onMounted,
     } from 'vue';
     import {
+        useStore
+    } from '../../store/store';
+    import {
         getQuestions
-    } from '../../api/request.ts';
+    } from '../../api/request';
+    const store = useStore();
 
-    // Get question lists. 
-    let lists = reactive([]);
     // Get Initial lists.
     onMounted(async () => {
         let res = await getQuestions();
-        res.data.lists.forEach(i => lists.push(i));
+        store.setLists(res.data);
     });
     // search Function.
     async function search(searchKey: string) {
-        let res = await getQuestions({
+        let params = {
             searchKey: searchKey,
-        });
-        lists.length = 0;
-        res.data.forEach(i => lists.push(i));
+        };
+        if (store.type) params.type = store.type;
+        if (store.category) params.keywords = store.category;
+        let res = await getQuestions(params);
+        store.setLists(res.data);
     }
 </script>
 
@@ -34,8 +37,8 @@
         </div>
         <div class="questionWindow_content" id="questionWindowContent">
             <QuestionListHeader></QuestionListHeader>
-            <p id="nothingMatch" v-if="lists.length === 0">没有哦~</p>
-            <QuestionListItem v-for="{id, question, heat} in lists" :id="id" :heat="heat" :question="question"></QuestionListItem>
+            <p id="nothingMatch" v-if="store.questionLists.length === 0">没有哦~</p>
+            <QuestionListItem v-for="{id, title, heat} in store.questionLists" :id="id" :heat="heat" :title="title"></QuestionListItem>
         </div>
     </div>
     <div id="questionWindow_btnList">
@@ -99,6 +102,7 @@
             }
         }
     }
+
     #nothingMatch {
         text-align: center;
     }

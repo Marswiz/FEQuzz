@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useStore } from '../store/store';
-const store = useStore();
 
 const request = axios.create({
     baseURL: 'http://localhost:3333/questions',
@@ -14,10 +13,7 @@ type Params = {
     searchKey ? : string,
 };
 
-export function getQuestions(params: Params = {
-    page: store.curPage, // get page info from store.
-    perPage: store.perPage, // get perpage info from store.
-}) {
+export function getQuestions(params: Params = {}) {
     return request({
         method: 'GET',
         url: '/',

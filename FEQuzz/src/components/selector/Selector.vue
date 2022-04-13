@@ -16,10 +16,8 @@
         items: [Array, Object],
         changeCallback: Function,
     });
-    let selected: Ref < Selected > = ref(null);
     const choose = (val: Selected) => {
-        selected.value = val;
-        if(typeof props.changeCallback === 'function') props.changeCallback(selected.value);
+        if(typeof props.changeCallback === 'function') props.changeCallback(val);
     };
     const toggleSelecting = function() {
         selecting.value = !selecting.value;
@@ -29,7 +27,7 @@
 <template>
     <div class="selector_container" @click="toggleSelecting()">
         <span class="selector_tag">
-            {{ selected ? selected : tag }}
+            {{ tag }}
             <span class="arrow">▲</span>
         </span>
         <SelectorDetailBox v-if="selecting" :items="items" @choose-item="choose"></SelectorDetailBox>

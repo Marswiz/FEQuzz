@@ -62,7 +62,9 @@ router.get('/questions', async (req, res, next) => {
             let q = req.query.searchKey.split(' ');
             q = q.map(i => i.trim());
             for (let qq of q) {
-                lists = lists.filter(i => i.question.toLowerCase().indexOf(qq.toLowerCase()) !== -1);
+                lists = lists.filter(i => {
+                    return (i.question.toLowerCase().indexOf(qq.toLowerCase()) !== -1) || (i.keywords.includes(qq.toLowerCase()) || (i.keywords.includes(qq.toUpperCase())));
+                });
             }
         }
         // 分页

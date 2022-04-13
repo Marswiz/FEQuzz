@@ -1,13 +1,8 @@
 <script setup lang="ts">
     import UserInfo from '../userInfo/UserInfo.vue';
-    let questionInfo = {
-        id: 124,
-        type: '手写代码',
-        question: '说说CSS中的BFC？它的触发条件是？',
-        keywords: ['CSS', 'BFC', '基础'],
-        answer: 'answer',
-        heat: 10,
-    };
+    defineProps({
+        question: Object,
+    });
 </script>
 
 <template>
@@ -15,22 +10,22 @@
         <div class="questionDetailHeader_selectorContainer">
             <div class="tag" id="id">
                 <span class="selector_tag">
-                    ID: <span class="info">{{ questionInfo.id }}</span>
+                    ID: <span class="info">{{ question.id }}</span>
                 </span>
             </div>
             <div class="tag" id="type">
                 <span class="selector_tag">
-                    题型：<span class="info">{{ questionInfo.type }}</span>
+                    题型：<span class="info">{{ question.type }}</span>
                 </span>
             </div>
             <div class="tag" id="heat">
                 <span class="selector_tag">
-                    热度：<span class="info">{{ questionInfo.heat }}</span>
+                    热度：<span class="info">{{ question.heat }}</span>
                 </span>
             </div>
             <div class="tag" id="keywords">
                 <span class="selector_tag">
-                    关键词：<span class="info" v-for="word in questionInfo.keywords" :key="word">{{ word }}&nbsp;&nbsp;</span>
+                    关键词：<span class="info" v-for="word in question.keywords" :key="word">{{ word }}&nbsp;&nbsp;</span>
                 </span>
             </div>
         </div>

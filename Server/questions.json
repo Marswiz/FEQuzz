@@ -4,10 +4,12 @@
       "id": 1,
       "type": "手写代码",
       "keywords": [
-        "手写API"
+        "手写API",
+        "JS"
       ],
       "heat": 0,
-      "question": "手写实现call()方法",
+      "title": "手写实现call()方法",
+      "question": "请手写实现js中原生的call()方法",
       "answer": "<pre>function myCall() {...}</pre>"
     },
     {
@@ -17,107 +19,21 @@
         "CSS"
       ],
       "heat": 0,
-      "question": "说说CSS中的BFC",
+      "title": "说说BFC",
+      "question": "CSS中的BFC是什么？它有什么特性？\n用途是？如何触发？",
       "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
     },
     {
       "id": 3,
       "type": "软技能",
       "keywords": [
-        "软技能"
+        "软技能",
+        "价值观",
+        "沟通"
       ],
       "heat": 0,
       "question": "请问你是否薅过羊毛？如何看待？",
+      "title": "薅羊毛",
       "answer": "自由作答。"
-    },
-    {
-      "id": 4,
-      "question": "are you ok?",
-      "answer": "Of Course!",
-      "type": "123",
-      "keywords": [
-        "456"
-      ]
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    },
-    {
-      "id": 2,
-      "type": "basic",
-      "keywords": [
-        "CSS"
-      ],
-      "heat": 0,
-      "question": "说说CSS中的BFC",
-      "answer": "BFC(块级格式化上下文)，有如下特性：BFC 会创建一个独立的空间，内部元素永远不会超出它的范围，即使是float元素（因此浮动元素也会撑开触发了BFC的盒子）；不同BFC之间，不会发生外边距折叠；BFC区域不会与任何float元素重叠（相当于左右都清除浮动）"
-    }
-  ]
+    }]
 }
